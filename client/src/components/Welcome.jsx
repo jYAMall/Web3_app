@@ -21,7 +21,7 @@ const Input = ({ placeholder, name, type, value, handleChange }) => (
 );
 
 const Welcome = () => {
-    const { connectWallet, currentAccount, formData, sendTransaction, handleChange } = useContext( TransactionContext );   
+    const { connectWallet, currentAccount, formData, sendTransaction, handleChange, isLoading } = useContext( TransactionContext );   
 
 
 
@@ -53,6 +53,7 @@ const Welcome = () => {
                             onClick={connectWallet}
                             className='flex flex-row justify-center items-center my-5 bg-[#00f895] p-3 rounded-full cursor-pointer hover:bg-[#10ebf9]'
                         >
+                            <AiFillPlayCircle className="text-white mr-2" />
                             <p className='text-black text-base font-semibold'>
                             Connect Wallet
                             </p>
@@ -106,16 +107,16 @@ const Welcome = () => {
                         
                         <div className='h-[1px] w-full bg-gray-400 my-2'/>
                         
-                        {false ?(
-                            <Loader />
-                        ) : (
-                            <button
-                            type='button'
-                            onClick={ handleSubmit }
-                            className="text-white w-full mt-2 border-[1px] p-2 border-[#3d4f7c] rounded-full cursor-pointer"
-                            >
-                                Send Now
-                            </button>
+                        {isLoading
+                            ? <Loader />
+                            : (
+                                <button
+                                    type="button"
+                                    onClick={handleSubmit}
+                                    className="text-white w-full mt-2 border-[1px] p-2 border-[#3d4f7c] hover:bg-[#3d4f7c] rounded-full cursor-pointer"
+                                >
+                                    Send now
+                                </button>
                         )}
 
                     </div>
